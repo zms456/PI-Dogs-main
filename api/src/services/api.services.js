@@ -1,9 +1,14 @@
 require("dotenv").config();
-const { ALL_DOGS, API_KEY } = process.env;
+const { ALL_DOGS, API_KEY,BY_NAME,BY_ID} = process.env;
 const axios = require('axios');
 
+
+
+
+
+// getDogsApi me trae todos los dogs 
 const getDogsApi = async () => {
-    const response = await axios(`${ALL_DOGS}?key${API_KEY}`);
+    const response = await axios(`${ALL_DOGS}?key=${API_KEY}&limit=100`);
 
     if (response) {
         const dogsCollection = response.data.map((dogs) => {
@@ -23,8 +28,31 @@ const getDogsApi = async () => {
     }
     return { message: " 👀 algo fallo 👀" };
 };
+// fin de getDogsApi
+
+ const DogsByIdFromApi = async (idDogs) => {
+    const response = await axios(`${BY_ID}${idDogs}?key=${API_KEY}`);
+    if (response) {
+      return response.data;
+    } else {
+      return { status: 404, message: "Id not foubd" };
+    }
+  };
+
+const getDogsByIdFromApi = async (name) => {
+  console.log(name)
+    const response = await axios(`${BY_NAME}${name}&x-api-key=${API_KEY}`);
+    if (response) {
+      return response.data;
+    } else {
+      return { status: 404, message: "Dogs Not Found" };
+    }
+  };
+  
 
 
 module.exports = {
     getDogsApi,
+    getDogsByIdFromApi,
+    DogsByIdFromApi,
 }

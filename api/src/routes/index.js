@@ -1,7 +1,8 @@
 const { Router } = require('express');
 
-const {
+const { // datos de la const se usan en la ruta
     getRazaDogs,
+    getDogsById,
   } = require("../controllers/dogs.controller");
 
 // Importar todos los routers;
@@ -14,6 +15,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.route("/dogs").get(getRazaDogs);
+router.route("/dogs/:idDogs").get(getDogsById)
 
 
 module.exports = router;
