@@ -26,7 +26,7 @@ const getRazaDogs = async (req, res) => {
 
   } else {
     const dataFromApi = await getDogsApi();
-    return res.json(dataFromApi);
+    res.json(dataFromApi);
   }
 };
 
@@ -44,24 +44,16 @@ const getDogsById = async (req, res) => {
 
 
 const postDogs = async (req, res) => {
+  
   const { name, height, weight, life_span, temperament} = req.body;
-
+  
   if (!name || !height || !weight || !life_span) {
     return res.json({
       status: 400,
       message: "Bad Request, some fields not found ",
     });
   }
-
-
-
-
-
-
-
-  
   if (JSON.parse(temperament).length > 0) {
-    console.log("llega....",temperament);
     const tempsObject = {
       id: v4(),
       name,
@@ -69,14 +61,15 @@ const postDogs = async (req, res) => {
       weight,
       life_span,
       image: req.file
-        ? `http://localhost:3001/uploads/${req.file.filename}`
-        : null,
+      ? `http://localhost:3001/uploads/${req.file.filename}`
+      : null,
     };
 
     const dataResult = await insertDog(tempsObject, temperament);
+    console.log("llega.....",tempsObject);
     return res.json(dataResult);
   } else {
-    return res.json({ status: 400, message: "Bad Request, arrays required" });
+    return res.json({ status: 400, message: "postdog Bad Request, arrays required" });
   }
 };
 

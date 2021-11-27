@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 const { Temperament } = require("../db");
 const { getDogsTemperamentFromApi } = require("../services/api.services");
 
@@ -15,11 +6,9 @@ const getTempFromdb = async () => {
     const tempDb_size = await Temperament.count();
     if (tempDb_size === 0) {
       const tempsApi = await getDogsTemperamentFromApi();
-     const filterDb = tempsApi.map(tempsName => {const obj = {name: tempsName}
+      const filterDb = tempsApi.map(tempsName => {const obj = {name: tempsName}
         return obj;
       });
-      console.log("llega...",filterDb)
-      
       await Temperament.bulkCreate(filterDb);
     }
 

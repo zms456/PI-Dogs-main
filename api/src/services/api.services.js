@@ -80,9 +80,8 @@ const getDogsTemperamentFromApi = async () => {
   if (response) {
     const dogsCollection = response.data.map((dogs) => dogs.temperament);
     const temps = dogsCollection.toString().trim().split(/\s*,\s*/);
-    const d = [...new Set(temps)]; // quitamos temperamentos repetidos 
-     
-    return d;
+    const eliminaRepetidos = [...new Set(temps)]; // quitamos temperamentos repetidos 
+    return eliminaRepetidos;
 
   };
 };

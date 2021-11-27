@@ -1,13 +1,14 @@
 
 
-const { Raza} = require("../db");
+const {Raza} = require("../db");
 
 const insertDog = async (dogObject, temperament) => {
+  
   try {
     const dogRegister = await Raza.create(dogObject);
-
+    
     if (dogRegister) {
-      await dogRegister.setTemps(JSON.parse(temperament));
+      await dogRegister.setTemperament(JSON.parse(temperament));
 
       return {
         status: 201,
