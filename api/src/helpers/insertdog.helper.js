@@ -1,15 +1,14 @@
-
-
 const {Raza} = require("../db");
 
-const insertDog = async (dogObject, temperament) => {
+const insertDog = async (dogsObject, temperament) => {
   
   try {
-    const dogRegister = await Raza.create(dogObject);
-    
+    const dogRegister = await Raza.create(dogsObject);
+   
     if (dogRegister) {
-      await dogRegister.setTemperament(JSON.parse(temperament));
-
+      
+      await dogRegister.setTemperaments(temperament);
+      
       return {
         status: 201,
         message: "Register successfully",
@@ -19,7 +18,7 @@ const insertDog = async (dogObject, temperament) => {
       return { status: 204, message: "Oops, Register failed" };
     }
   } catch (error) {
-    return { status: 500, error };
+    return { status: 500,  error };
   }
 };
 

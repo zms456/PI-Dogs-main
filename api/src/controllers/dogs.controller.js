@@ -5,7 +5,7 @@ const {
   getDogsByTemperamentFromApi,
 } = require("../services/api.services");
 
-const { insertDog} = require("../helpers/insertdog.helper");
+const { insertDog } = require("../helpers/insertdog.helper");
 
 const { v4 } = require("uuid");
 
@@ -53,8 +53,9 @@ const postDogs = async (req, res) => {
       message: "Bad Request, some fields not found ",
     });
   }
-  if (JSON.parse(temperament).length > 0) {
-    const tempsObject = {
+  if (temperament.length > 0) {
+    
+    const dogsObject = {
       id: v4(),
       name,
       height,
@@ -65,9 +66,8 @@ const postDogs = async (req, res) => {
       : null,
     };
 
-    const dataResult = await insertDog(tempsObject, temperament);
-    console.log("llega.....",tempsObject);
-    return res.json(dataResult);
+    const dataResult = await insertDog(dogsObject, temperament);
+    res.json(dataResult);
   } else {
     return res.json({ status: 400, message: "postdog Bad Request, arrays required" });
   }
