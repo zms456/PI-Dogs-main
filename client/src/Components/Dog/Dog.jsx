@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Noimage from "../../assets/noimg.jpg";
 import { getTemperaments, } from "../actions/index";
 import "./Dog.css";
@@ -86,11 +87,14 @@ const Dog = () => {
 
   return (
     <div className="contenedor">
-      <h1 className="logo"><span className="nombre-empresa">REGISTRAR NUEVO</span> DOGS</h1>
+      <Link to="/home">
+                <h2>Volver Home</h2>
+            </Link>
+      <h1 className="logo"><span className="nombre-empresa">REGISTRAR UNA NUEVA</span> RAZA</h1>
       <div className="wrapper animated bounceInLeft">
         <div class="info-empresa">
           <ul className="servicios">
-            <li><i className="fa fa-map-marker"></i> Buenos Aires - Argentina)</li>
+            <li><i className="fa fa-map-marker"></i> Buenos Aires - Argentina</li>
             <li><i className="fa fa-mobile"></i> +549 1124642816</li>
             <li><i className="fa fa-envelope"></i> rydermichel@gmail.com</li>
           </ul>
@@ -124,7 +128,6 @@ const Dog = () => {
             </p>
             <br />
             <br />
-        <h2>Temperamentos:</h2>
         <div className="temperamentos_container">
           {temperaments.length > 0 ? (
             temperaments.map((tempes) => {

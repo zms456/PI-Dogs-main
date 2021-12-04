@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getDogsFromBack, getTemperaments } from "../actions/index";
+import SearchBar from "../SearchBar/SearchBar";
 import "./Home.css";
 
-const Home = ({ dogs, getRazaDogs, getTemperaments}) => {
+const Home = ({ dogs, getRazaDogs, getTemperaments }) => {
 
   const [currentpage, setCurrenPage] = useState(1);
   const dogsXpage = 8;
@@ -34,13 +36,19 @@ const Home = ({ dogs, getRazaDogs, getTemperaments}) => {
   });
 
   useEffect(() => {
-    getRazaDogs() ;
+    getRazaDogs();
     getTemperaments();
 
   }, []);
 
   return (
     <div className="dogs_container">
+      <div className="menu">
+        <Link to="/create/dog">
+          <h2>Agregar nueva Raza</h2>
+        </Link>
+        <SearchBar />
+      </div>
       <div className="dogs">
         {currentItems ? (
           currentItems.map((raza, index) => {

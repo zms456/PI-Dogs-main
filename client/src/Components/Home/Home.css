@@ -1,4 +1,12 @@
-
+.dogs_container{
+  width: 90%;
+  margin-left: 5%;
+}
+.menu{
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+}
   .a-box {
     display: inline-block;
     width: 270px;
