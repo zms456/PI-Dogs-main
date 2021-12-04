@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getDogsFromBack } from "../actions/index";
+import { getDogsFromBack, getTemperaments } from "../actions/index";
 import "./Home.css";
-import { Link } from "react-router-dom";
 
-
-
-const Home = ({ dogs, getRazaDogs }) => {
+const Home = ({ dogs, getRazaDogs, getTemperaments}) => {
 
   const [currentpage, setCurrenPage] = useState(1);
-  const dogsXpage = 15;
+  const dogsXpage = 8;
   const pagesButtons = [];
+
   let currentItems;
 
   const handleClickPage = (e) => {
@@ -36,7 +34,8 @@ const Home = ({ dogs, getRazaDogs }) => {
   });
 
   useEffect(() => {
-    getRazaDogs();
+    getRazaDogs() ;
+    getTemperaments();
 
   }, []);
 
@@ -46,16 +45,20 @@ const Home = ({ dogs, getRazaDogs }) => {
         {currentItems ? (
           currentItems.map((raza, index) => {
             return (
-              <div key={index} className="dogs_card">
-                <div className="img_container">
-                  <img src={raza.image} alt="" />
+              <div className="a-box">
+                <div className="img-container">
+                  <div className="img-inner">
+                    <div key={index} className="inner-skew">
+                      <img src={raza.image} alt="" />
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3>Raza: {raza.name}</h3>
-                  <h4> Temperamento: {raza.temperament}</h4>
+                <div class="text-container">
+                  <h3>{raza.name}</h3>
+                  <h4>{raza.temperament}</h4>
                   <div className="cont_h_w">
-                    <h3>Altura: {raza.height}</h3>
-                    <h3>Peso: {raza.weight}</h3>
+                    <h4>Altura: {raza.height}</h4>
+                    <h4>Peso: {raza.weight}</h4>
                   </div>
                   <h4>Años de vida: {raza.life_span}</h4>
                 </div>
@@ -63,13 +66,13 @@ const Home = ({ dogs, getRazaDogs }) => {
             );
           })
         ) : (
-          <h1>sin videogames</h1>
+          <h1>sin dogs</h1>
         )}
       </div>
       <div className="pagination_container">
         <ul>{renderpageNumber}</ul>
       </div>
-    </div>
+    </div >
   );
 };
 
@@ -77,15 +80,20 @@ const mapStateToProps = (state) => {
 
   return {
     dogs: state.dogs,
+    temperamento: state.temperament,
   };
 };
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getRazaDogs: function () {
 
       dispatch(getDogsFromBack());
-    }
+    },
+    getTemperaments: function () {
+      dispatch(getTemperaments());
+    },
   }
 }
 

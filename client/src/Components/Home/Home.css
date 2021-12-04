@@ -1,46 +1,65 @@
-.dogs_container {
-    background-color: #f2f1f5;
-    color: rgb(255, 255, 255);
+
+  .a-box {
+    display: inline-block;
+    width: 270px;
+    text-align: center;
   }
   
-  .dogs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  .dogs_card {
-    width: 320px;
-    margin-top: 3rem;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    background-color: #090e11;
+  .img-container {
+      height: 240px;
+      width: 220px;
+      overflow: hidden;
+      border-radius: 0px 0px 30px 30px;
+      display: inline-block;
+      text-align: center;
   }
   
-  .dogs_card:hover img {
-    transform: scale(1.2);
-  }
-  .img_container {
-    width: 250px;
-    height: 250px;
-    margin: auto;
-    margin-top: 1rem;
-    overflow: hidden;
+  .img-container img {
+      transform: skew(0deg, -10deg);
+      height: 230px;
+      margin: -3px 0px 0px -40px;
+      
   }
   
-  .img_container > img {
-    min-width: 100%;
-    height: 100%;
-    transition: transform 0.5s;
+  .inner-skew {
+      display: inline-block;
+      border-radius: 30px;
+      overflow: hidden;
+      padding: 0px;
+      transform: skew(0deg, 13deg);
+      font-size: 0px;
+      margin: 20px 0px 0px 0px;
+      background: #c8c2c2;
+      height: 250px;
+      width: 200px;
+  }
+  
+  .text-container {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    padding: 120px 20px 20px 20px;
+    border-radius: 20px;
+    background: #fff;
+    margin: -120px 0px 0px 0px;
+    line-height: 19px;
+    font-size: 12px;
+  }
+  
+  .text-container h3 {
+    margin: 20px 0px 10px 0px;
+    color: #04bcff;
+    font-size: 16px;
+  }
+  .text-container h4 {
+    margin: 0px 0px 3px 0px;
+    color: #5f6a6e;
+    font-size: 12px;
   }
   .cont_h_w{
-    display:flex;
+    display: flex;
     gap: .5rem;
-    justify-content: center;
     align-items: center;
-
+    justify-content: center;
+    
   }
   .pagination_container {
     width: 50%;

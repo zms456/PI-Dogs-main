@@ -8,20 +8,21 @@ export const getDogsFromBack = () => {
     if (data) {
       return dispatch({
         type: SET_DOGS,
-        payload: data,
+        payload: data.results,
       });
     }
   };
 };
 
 // funcion para traer temperamentos
-export const getTemperament = () => {
+export const getTemperaments = () => {
   return async function (dispatch) {
     const response = await fetch(`http://localhost:3001/temperament`);
     const data = await response.json();
     return dispatch({
       type: SET_TEMPERAMENT,
-      payload: data.status === 200 ? data : [],
+      payload: data.status === 200 ? data.results: [],
     });
   };
 };
+

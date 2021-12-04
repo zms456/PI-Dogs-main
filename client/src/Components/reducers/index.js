@@ -5,7 +5,7 @@ import {
 
 const initialState = {
     dogs: [],
-    temperament: [],
+    temperaments: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,12 +15,14 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 dogs: action.payload,
             };
+        
         case SET_TEMPERAMENT:
+            
             return {
                 ...state,
-                temperament: action.payload,
+                temperaments: action.payload,
             };
-        
+       
         default:
             return state;
     }

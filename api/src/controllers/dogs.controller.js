@@ -2,10 +2,13 @@ const {
   getDogsApi,
   getDogsByNameFromApi,
   DogsByIdFromApi,
-  getDogsByTemperamentFromApi,
 } = require("../services/api.services");
 
-const { insertDog } = require("../helpers/insertdog.helper");
+const {
+   insertDog,
+   getDogsByNameFromDb,
+   getDogDb,
+ } = require("../helpers/insertdog.helper");
 
 const { v4 } = require("uuid");
 
@@ -21,12 +24,23 @@ const getRazaDogs = async (req, res) => {
 
     // bucar en api y en base de datos por un parametro "name" get/dogs?name
     const dogsByName = await getDogsByNameFromApi(name);
+    const dogsByNFromDb = await getDogsByNameFromDb(name);
 
-    return res.json({ fromApi: dogsByName.status === 404 ? [] : dogsByName });
+    return res.json({ fromApi: dogsByName.status === 404 ? [] : dogsByName,
+                      fromDb: dogsByNFromDb.status === 404 ? [] : dogsByNFromDb.results,
+    });
 
   } else {
     const dataFromApi = await getDogsApi();
-    res.json(dataFromApi);
+    // desde BD
+    const dataFromDb = await getDogDb();
+    return res.json({
+     
+      results:
+        dataFromDb.status === 200
+          ? [...dataFromApi, ...dataFromDb.results]
+          : dataFromApi,
+    });
   }
 };
 
@@ -44,9 +58,9 @@ const getDogsById = async (req, res) => {
 
 
 const postDogs = async (req, res) => {
-  
-  const { name, height, weight, life_span, temperament} = req.body;
-  
+
+  const { name, height, weight, life_span, temperament } = req.body;
+
   if (!name || !height || !weight || !life_span) {
     return res.json({
       status: 400,
@@ -54,7 +68,7 @@ const postDogs = async (req, res) => {
     });
   }
   if (temperament.length > 0) {
-    
+
     const dogsObject = {
       id: v4(),
       name,
@@ -62,8 +76,8 @@ const postDogs = async (req, res) => {
       weight,
       life_span,
       image: req.file
-      ? `http://localhost:3001/uploads/${req.file.filename}`
-      : null,
+        ? `http://localhost:3001/uploads/${req.file.filename}`
+        : null,
     };
 
     const dataResult = await insertDog(dogsObject, temperament);
