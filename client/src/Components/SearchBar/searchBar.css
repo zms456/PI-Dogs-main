@@ -1,8 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
 
-
+.buscador_select_temps{
+  display: flex;
+}
 .conteiner_search{
   display: flex;
+}
+.container_serchBar{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: .5rem;
+}
+.filter_az_za{
+display: flex;
+gap: .5rem;
+}
+.filter_weigth{
+  display: flex;
+  gap: .5rem;
 }
 
 .search-box {

@@ -1,0 +1,24 @@
+.detail_header{
+    width: 100%;
+    
+}
+.detal_home{
+    width: 7rem;
+    margin-left: 2rem;
+}
+.detal_home>.dvolve_home{
+    text-decoration: none;
+}
+.image_detail{
+    width:30%;
+    margin: auto;
+    
+}
+
+.image_detail > img{
+    width: 100%;
+}
+
+.image_title{
+    color: seashell;
+}

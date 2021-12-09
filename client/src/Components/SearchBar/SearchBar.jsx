@@ -12,7 +12,7 @@ function SearchBar({
   temperamentToProps,
   filterTemperamentos,
   handleOrder,
-  handlePeso,// viene dede el home
+  handlePeso, // viene dede el home
 }) {
   const [name, setNombre] = useState("");
 
@@ -33,41 +33,17 @@ function SearchBar({
 
   return (
     <>
-      <div className="conteiner_search">
-        <div className="container_serchBar">
-          <form action="" onSubmit={handlebuscarNombre} className="search-box">
-            <input
-              type="text"
-              placeholder=" "
-              onChange={handlecambiaNombre}
-              value={name}
-              required
-            />
-            <button type="submit"></button>
-          </form>
-
-          <div>
-            <button id="0" onClick={handleOrder}>
-              A-Z
-            </button>
-          </div>
-          <div>
-            <button id="1" onClick={handleOrder}>
-              Z-A
-            </button>
-          </div>
-          <div>
-            <button id="0" onClick={handlePeso}>
-              minMax
-            </button>
-          </div>
-          <div>
-            <button id="1" onClick={handlePeso}>
-              maxMin
-            </button>
-          </div>
-        </div>
-
+      <div className="buscador_select_temps">
+        <form action="" onSubmit={handlebuscarNombre} className="search-box">
+          <input
+            type="text"
+            placeholder=" "
+            onChange={handlecambiaNombre}
+            value={name}
+            required
+          />
+          <button type="submit"></button>
+        </form>
         <select className="select-css" onChange={handleSelectTempFilter}>
           <option>Selecciona una opción</option>
           {temperamentToProps.length > 0 ? (
@@ -82,6 +58,34 @@ function SearchBar({
             <option>Temperamento Vacios</option>
           )}
         </select>
+      </div>
+      <div className="conteiner_search">
+        <div className="container_serchBar">
+          <div className="filter_az_za">
+            <div>
+              <button className="buttonFiltrados" id="0" onClick={handleOrder}>
+                A-Z
+              </button>
+            </div>
+            <div>
+              <button className="buttonFiltrados" id="1" onClick={handleOrder}>
+                Z-A
+              </button>
+            </div>
+          </div>
+          <div className="filter_weigth">
+            <div>
+              <button className="buttonFiltradosp" id="0" onClick={handlePeso}>
+                minMax
+              </button>
+            </div>
+            <div>
+              <button className="buttonFiltradosp" id="1" onClick={handlePeso}>
+                maxMin
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

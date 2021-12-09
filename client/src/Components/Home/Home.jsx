@@ -75,51 +75,54 @@ const Home = ({
 
   return (
     <div className="dogs_container">
-      <div className="menu_seachBar">
-        <div className="cont_link">
-          <Link className="link" to="/create/dog">
-            <h2>Agregar Dogs</h2>
-          </Link>
+      <div className="cont_link">
+            <Link className="link" to="/create/dog">
+              <h2>Agregar Dogs</h2>
+            </Link>
+          </div>
+      <div>
+        <div className="menu_seachBar">
+          
+          <div>
+            <SearchBar
+              setCurrenPage={setCurrenPage}
+              dogs={dogs}
+              handleOrder={handleOrder}
+              handlePeso={handlePeso}
+            />
+          </div>
         </div>
-        <div>
-          <SearchBar
-            setCurrenPage={setCurrenPage}
-            dogs={dogs}
-            handleOrder={handleOrder}
-            handlePeso = {handlePeso}
-          />
-        </div>
-      </div>
-      <div className="dogs">
-        {currentItems ? (
-          currentItems.map((raza, index) => {
-            return (
-              <div className="conteiner_dogs" key={index}>
-                <div className="a-box">
-                  <Link to to={`/dog/detalle/${raza.id}`}>
-                    <div className="cont inner-skew">
-                      <img src={!raza.image ? imgDog : raza.image} alt="" />
-                    </div>
-                    <div class="text-container">
-                      <h1>{raza.name}</h1>
-                      <h3>{raza.temperament}</h3>
-                      <div className="cont_h_w">
-                        <h3>Altura: {raza.height}</h3>
-                        <h3>Peso: {raza.weight}</h3>
+        <div className="dogs">
+          {currentItems ? (
+            currentItems.map((raza, index) => {
+              return (
+                <div className="conteiner_dogs" key={index}>
+                  <div className="a-box">
+                    <Link className="llink" to={`/dog/detalle/${raza.id}`}>
+                      <div className="cont inner-skew">
+                        <img src={!raza.image ? imgDog : raza.image} alt="" />
                       </div>
-                      <h3>Años de vida: {raza.life_span}</h3>
-                    </div>
-                  </Link>
+                      <div class="text-container">
+                        <h1>{raza.name}</h1>
+                        <h3>{raza.temperament}</h3>
+                        <div className="cont_h_w">
+                          <h3>Altura: {raza.height}</h3>
+                          <h3>Peso: {raza.weight}</h3>
+                        </div>
+                        <h3>Años de vida: {raza.life_span}</h3>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <h1>sin dogs</h1>
-        )}
-      </div>
-      <div className="pagination_container">
-        <ul>{renderpageNumber}</ul>
+              );
+            })
+          ) : (
+            <h1>sin dogs</h1>
+          )}
+        </div>
+        <div className="pagination_container">
+          <ul>{renderpageNumber}</ul>
+        </div>
       </div>
     </div>
   );

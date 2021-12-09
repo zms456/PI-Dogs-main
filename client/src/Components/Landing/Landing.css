@@ -1,25 +1,35 @@
-.landing_container{
-    min-height: 100vh;
-    position: relative;
+.landing_container {
+  min-height: 100vh;
+  background: url(../../assets/fondo.jpg) no-repeat center center;
+  background-size: cover;
+  position: relative;
 }
-.conteiner_welcome{
-    padding-top: 20rem;
-    position: relative;
-    color: rgb(38, 201, 201);
-    z-index: 2;
+.conteiner_welcome {
+  padding-top: 10rem;
+  position: relative;
+  color: rgb(255, 255, 255);
 }
-.button{
-    display: inline-block;
-    border: none;
-    width: 200px;
-    height: 3.5rem;
-    border-radius: 30px;
-    padding: 10px 5px;
-    background-color: #f5be09;
-    font-size: 1.8rem;
-    color: #3f3f3f;
-    font-weight: 800;
-    transition: 150ms;
-    margin-top: 2.5rem;
+.conteiner_welcome > h1 {
+  font-weight: 900;
+  font-size: 3rem;
+}
 
+.button {
+  display: inline-block;
+  border: none;
+  width: 230px;
+  height: 3.5rem;
+  border-radius: 15px;
+  padding: 10px 5px;
+  background-color: #f5be09;
+  font-size: 1.8rem;
+  color: #3f3f3f;
+  font-weight: 800;
+  transition: 150ms;
+  margin-top: 2.5rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  border: 3px solid turquoise;
 }
