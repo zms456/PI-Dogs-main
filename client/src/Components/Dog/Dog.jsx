@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Noimage from "../../assets/noimg.jpg";
-import { getTemperaments, } from "../actions/index";
+import { getTemperamentsBack, } from "../actions/index";
 import "./Dog.css";
 
 const Dog = () => {
-  const temperaments = useSelector((state) => state.temperaments);
+  const temperamentss = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
 
   const initialDogs = {
@@ -36,6 +36,7 @@ const Dog = () => {
     });
   };
 
+  //checkbox
   const handleCkeckboxChange = (e) => {
     const { checked, id } = e.target;
     setCheckboxObj({
@@ -82,17 +83,17 @@ const Dog = () => {
     }
   };
   useEffect(() => {
-    dispatch(getTemperaments());
+    dispatch(getTemperamentsBack());
   }, []);
 
   return (
     <div className="contenedor">
-      <Link to="/home">
-                <h2>Volver Home</h2>
-            </Link>
+      <Link className="volver_home" to="/home">
+        <h2>Volver Home</h2>
+      </Link>
       <h1 className="logo"><span className="nombre-empresa">REGISTRAR UNA NUEVA</span> RAZA</h1>
       <div className="wrapper animated bounceInLeft">
-        <div class="info-empresa">
+        <div className="info-empresa">
           <ul className="servicios">
             <li><i className="fa fa-map-marker"></i> Buenos Aires - Argentina</li>
             <li><i className="fa fa-mobile"></i> +549 1124642816</li>
@@ -128,25 +129,25 @@ const Dog = () => {
             </p>
             <br />
             <br />
-        <div className="temperamentos_container">
-          {temperaments.length > 0 ? (
-            temperaments.map((tempes) => {
-              return (
-                <div key={tempes.id} className="control_temp">
-                  <input
-                    type="checkbox"
-                    id={tempes.id}
-                    name={tempes.name}
-                    onChange={handleCkeckboxChange}
-                  />
-                  <span>{tempes.name}</span>
-                </div>
-              );
-            })
-          ) : (
-            <h2>Sin temperamentos</h2>
-          )}
-        </div>
+            <div className="temperamentos_container">
+              {temperamentss.length > 0 ? (
+                temperamentss.map((tempes) => {
+                  return (
+                    <div key={tempes.id} className="control_temp">
+                      <input
+                        type="checkbox"
+                        id={tempes.id}
+                        name={tempes.name}
+                        onChange={handleCkeckboxChange}
+                      />
+                      <span>{tempes.name}</span>
+                    </div>
+                  );
+                })
+              ) : (
+                <h2>Sin temperamentos</h2>
+              )}
+            </div>
             <p className="full">
               <button type="submit" className="boton-enviar">Guardar</button>
             </p>

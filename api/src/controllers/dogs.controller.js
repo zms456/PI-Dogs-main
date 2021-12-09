@@ -15,8 +15,6 @@ const { v4 } = require("uuid");
 
 
 // ruta que trae  todos los dogs
-
-
 const getRazaDogs = async (req, res) => {
   const { name } = req.query;
 
@@ -67,7 +65,7 @@ const postDogs = async (req, res) => {
       message: "Bad Request, some fields not found ",
     });
   }
-  if (temperament.length > 0) {
+  if (JSON.parse(temperament).length > 0) {
 
     const dogsObject = {
       id: v4(),
@@ -80,7 +78,7 @@ const postDogs = async (req, res) => {
         : null,
     };
 
-    const dataResult = await insertDog(dogsObject, temperament);
+    const dataResult = await insertDog(dogsObject, JSON.parse(temperament));
     res.json(dataResult);
   } else {
     return res.json({ status: 400, message: "postdog Bad Request, arrays required" });

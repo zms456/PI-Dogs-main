@@ -3,6 +3,8 @@ const {
     getTempFromdb,
 } = require("../helpers/temperament.helper")
 
+
+
 const getTemperament = async (req, res) => {
   
     //temperament

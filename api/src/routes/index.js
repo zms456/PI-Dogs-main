@@ -18,7 +18,7 @@ const router = Router();
 
 router.route("/dogs").get(getRazaDogs);// me trae todos los dogs
 
-router.route("/dogs/:id").get(getDogsById); //me busca por id
+router.route("/dog/:id").get(getDogsById); //me busca por id
 
 router.route("/temperament").get(getTemperament);
 
